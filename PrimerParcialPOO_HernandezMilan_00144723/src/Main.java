@@ -31,9 +31,11 @@ public class Main {
                     case 3:
                         consultarListado();
                         break;
+                    default:
+                        System.out.println("Ingrese una opcion valida");
                 }
             } catch (Exception e) {
-                System.out.println("Por favoir ingrese un dato valido");
+                System.out.println("Por favor ingrese un dato valido");
             }
 
         }
@@ -43,11 +45,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String nombre;
         System.out.println("Ingrese el nombre del producto: ");
-        nombre= sc.nextLine();
+        nombre = sc.nextLine();
 
         for (int i = 0; i < listaArticulos.size(); i++) {
             ArticuloElectronico art = listaArticulos.get(i);
-            if(art.getNombre().equals(nombre)){
+            if (art.getNombre().equals(nombre)) {
                 System.out.println("Ingrese el nuevo nombre del articulo: ");
                 art.setNombre(sc.nextLine());
                 System.out.println("Nuevo nombre del articulo " + art.getNombre() + " cambiado correctamente...");
@@ -59,7 +61,7 @@ public class Main {
     private static void consultarListado() {
         System.out.println("------------------------------------------------------------");
 
-       try {
+        try {
             for (int i = 0; i <= listaArticulos.size(); i++) {
                 ArticuloElectronico art = listaArticulos.get(i);
 
@@ -71,10 +73,9 @@ public class Main {
                 System.out.println("Precio: " + art.obtenerPrecio());
                 System.out.println("------------------------------------------------------------");
             }
-        }catch (Exception e)
-       {
-           System.out.println("\tTodos los elementos han sido mostrados. ");
-       }
+        } catch (Exception e) {
+            System.out.println("\tTodos los elementos han sido mostrados. ");
+        }
     }
 
     private static void agregar() {
@@ -86,29 +87,30 @@ public class Main {
         String rgb;
         float precio = 0;
 
-        System.out.println("Nombre: ");
-        nombre = sc.nextLine();
-        System.out.println("Modelo: ");
-        modelo = sc.nextLine();
-        System.out.println("Descripcion: ");
-        descripcion = sc.nextLine();
-        System.out.println("Posee rgb (SI - NO): ");
-        rgb = sc.nextLine();
 
-        int tipoArt = tipoArt();
-        
-        switch (tipoArt) {
-            case 1:
-                ArticuloElectronico telefono = new Telefono(nombre, modelo, descripcion, precio);
-                listaArticulos.add(telefono);
-                System.out.println("Articulo agregado correctamente...");
-                break;
-            case 2:
-                ArticuloElectronico laptop = new Laptop(nombre, modelo, descripcion, precio, rgb);
-                listaArticulos.add(laptop);
-                System.out.println("Articulo agregado correctamente...");
-                break;
-        }
+            System.out.println("Nombre: ");
+            nombre = sc.nextLine();
+            System.out.println("Modelo: ");
+            modelo = sc.nextLine();
+            System.out.println("Descripcion: ");
+            descripcion = sc.nextLine();
+            System.out.println("Posee rgb (SI - NO): ");
+            rgb = sc.nextLine();
+
+            int tipoArt = tipoArt();
+
+            switch (tipoArt) {
+                case 1:
+                    ArticuloElectronico telefono = new Telefono(nombre, modelo, descripcion, precio);
+                    listaArticulos.add(telefono);
+                    System.out.println("Articulo agregado correctamente...");
+                    break;
+                case 2:
+                    ArticuloElectronico laptop = new Laptop(nombre, modelo, descripcion, precio, rgb);
+                    listaArticulos.add(laptop);
+                    System.out.println("Articulo agregado correctamente...");
+                    break;
+            }
     }
 
     private static int tipoArt() {
